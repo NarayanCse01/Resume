@@ -3,89 +3,244 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Profile</title>
+  <title>Narayan's Portfolio</title>
+
+  <!-- TailwindCSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom Styles -->
+  <style>
+    /* Card Hover Effect */
+    .project-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Fade-in Animation */
+    .fade-in {
+      animation: fadeIn 1.5s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Neon Glow Text */
+    .neon-text {
+      text-shadow: 0 0 10px #4f46e5, 0 0 20px #9333ea, 0 0 30px #4f46e5;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-900 text-gray-200 font-sans">
+
   <!-- Navbar -->
-  <header class="bg-white shadow-md p-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-indigo-600">My Portfolio</h1>
+  <header class="bg-gray-800 shadow-md p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-indigo-400 neon-text">My Portfolio</h1>
     <nav class="space-x-6">
-      <a href="#about" class="hover:text-indigo-600">About</a>
-      <a href="#projects" class="hover:text-indigo-600">Projects</a>
-      <a href="#contact" class="hover:text-indigo-600">Contact</a>
+      <a href="#about" class="hover:text-indigo-400">About</a>
+      <a href="#projects" class="hover:text-indigo-400">Projects</a>
+      <a href="#contact" class="hover:text-indigo-400">Contact</a>
     </nav>
   </header>
 
   <!-- Hero Section -->
-  <section class="flex flex-col items-center text-center py-16 bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
-    <img src="./123.jpg" height="150px" width="150px" alt="Profile Picture" class="rounded-full shadow-lg border-4 border-white mb-6" />
-    <h2 class="text-4xl font-bold mb-2">Narayan kumar</h2>
-    <p class="text-lg">Web Developer | Designer | Learner</p>
+  <section class="flex flex-col items-center text-center py-16 bg-gradient-to-r from-purple-800 to-indigo-800 text-white fade-in">
+    <!-- Profile Image -->
+    <img src="./123.jpg" height="150" width="150" alt="Profile Picture" 
+         class="rounded-full shadow-lg border-4 border-indigo-400 mb-6 animate-bounce" />
+
+    <h2 class="text-4xl font-bold mb-2 neon-text">Narayan Kumar</h2>
+    <p class="text-lg">💻 Web Developer | 🎨 Designer | 🚀 Learner</p>
+
+    <!-- Fun GIF -->
+    <img src="https://media.tenor.com/41I-iMyClCgAAAAd/programmer-programming.gif" 
+         alt="Anime Hacker" 
+         class="w-72 mt-8 rounded-lg shadow-lg border-2 border-indigo-500 animate-pulse" />
   </section>
 
   <!-- About Section -->
-  <section id="about" class="max-w-4xl mx-auto py-12 px-6">
-    <h3 class="text-2xl font-semibold mb-4 text-indigo-600">About Me</h3>
-    <p class="leading-relaxed">
-      Hi! I'm Narayan kumar,
- "Dedicated computer science graduate with a passion for software
- engineering and proven problem-solving skills. Seeking an entry-level
- position to apply knowledge of new technologies and contribute to
- innovative projects". 
-      a passionate developer who loves building modern, responsive, and user-friendly websites. I enjoy learning new technologies and working on exciting projects that solve real-world problems.
+  <section id="about" class="max-w-4xl mx-auto py-12 px-6 fade-in">
+    <h3 class="text-2xl font-semibold mb-4 text-indigo-400 neon-text">About Me</h3>
+    <p class="leading-relaxed text-gray-300">
+      Hi! I'm <span class="font-bold text-indigo-300">Narayan Kumar</span>, a dedicated Computer Science graduate 
+      with a passion for <span class="text-purple-300">software engineering</span> and problem-solving.  
+      I love building modern, responsive, and user-friendly websites that solve real-world problems.  
+      Always curious and eager to learn new technologies, I aim to create impactful digital experiences. 🚀
     </p>
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="bg-gray-200 py-12">
+  <section id="projects" class="bg-gray-800 py-12">
     <div class="max-w-5xl mx-auto px-6">
-      <h3 class="text-2xl font-semibold mb-6 text-indigo-600">Projects</h3>
+      <h3 class="text-2xl font-semibold mb-6 text-indigo-400 neon-text">Projects</h3>
+
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-white p-4 rounded-xl shadow-md">
-          <h4 class="text-lg font-bold mb-2">Project 1</h4>
-          <p class="text-sm">Short description of the project goes here.</p>
+        
+        <!-- Project 1: Weather App -->
+        <div class="bg-gray-900 p-4 rounded-xl shadow-lg project-card">
+          <h4 class="text-lg font-bold mb-2">🌦️ Weather App</h4>
+          <p class="text-sm mb-3 text-gray-400">Search city or use your live location.</p>
+          
+          <!-- Search by City -->
+          <input id="city" type="text" placeholder="Enter city" 
+                 class="border p-2 w-full mb-2 rounded bg-gray-800 text-white" />
+          <button onclick="getWeather()" 
+                  class="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700 w-full">
+                  Get Weather
+          </button>
+
+          <!-- Weather by Location -->
+          <button onclick="getWeatherByLocation()" 
+                  class="bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-700 mt-2 w-full">
+                  📍 Use My Location
+          </button>
+
+          <!-- Weather Result -->
+          <p id="weatherResult" class="mt-2 text-sm text-indigo-300"></p>
         </div>
-        <div class="bg-white p-4 rounded-xl shadow-md">
-          <h4 class="text-lg font-bold mb-2">Project 2</h4>
-          <p class="text-sm">Short description of the project goes here.</p>
+
+        <!-- Project 2: To-Do List -->
+        <div class="bg-gray-900 p-4 rounded-xl shadow-lg project-card">
+          <h4 class="text-lg font-bold mb-2">✅ To-Do List</h4>
+          <p class="text-sm mb-3 text-gray-400">Manage your daily tasks easily.</p>
+
+          <input id="taskInput" type="text" placeholder="New task" 
+                 class="border p-2 w-full mb-2 rounded bg-gray-800 text-white" />
+          <button onclick="addTask()" 
+                  class="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700 w-full">
+                  Add Task
+          </button>
+          
+          <!-- Task List -->
+          <ul id="taskList" class="mt-2 text-sm list-disc pl-5 text-purple-300"></ul>
         </div>
-        <div class="bg-white p-4 rounded-xl shadow-md">
-          <h4 class="text-lg font-bold mb-2">Project 3</h4>
-          <p class="text-sm">Short description of the project goes here.</p>
+
+        <!-- Project 3: E-Commerce Demo -->
+        <div class="bg-gray-900 p-4 rounded-xl shadow-lg project-card">
+          <h4 class="text-lg font-bold mb-2">🛒 E-Commerce Demo</h4>
+          <p class="text-sm mb-3 text-gray-400">Simple product list & cart.</p>
+
+          <!-- Product Buttons -->
+          <div id="products" class="space-y-2 text-sm"></div>
+
+          <h5 class="font-bold mt-3 text-indigo-300">🛍️ Cart:</h5>
+          <ul id="cart" class="list-disc pl-5 text-sm text-purple-300"></ul>
         </div>
+
       </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="max-w-4xl mx-auto py-12 px-6">
-    <h3 class="text-2xl font-semibold mb-6 text-indigo-600">Contact Me</h3>
+  <section id="contact" class="max-w-4xl mx-auto py-12 px-6 fade-in">
+    <h3 class="text-2xl font-semibold mb-6 text-indigo-400 neon-text">Contact Me</h3>
     <form class="space-y-4">
-      <input type="text" placeholder="Your Name" class="w-full p-3 border rounded-lg" />
-      <input type="email" placeholder="Your Email" class="w-full p-3 border rounded-lg" />
-      <textarea placeholder="Your Message" class="w-full p-3 border rounded-lg"></textarea>
+      <input type="text" placeholder="Your Name" class="w-full p-3 border rounded-lg bg-gray-800 text-white" />
+      <input type="email" placeholder="Your Email" class="w-full p-3 border rounded-lg bg-gray-800 text-white" />
+      <textarea placeholder="Your Message" class="w-full p-3 border rounded-lg bg-gray-800 text-white"></textarea>
       <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700">Send</button>
     </form>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-white text-center py-4">
-    <div class="class" align="center">
-      contact me:-
-       <p> tel:  9117713860
-         <br>
-        email: narayankumar4work@gmail.com
-        <br>
-       patna city , patna , bihar IN
-      </p>
-        <p>&copy; 2025 Narayan kumar All rights reserved.</p>
-  </div>
+  <footer class="bg-gray-950 text-white text-center py-6">
+    <p>📞 9117713860 | 📧 narayankumar4work@gmail.com</p>
+    <p>📍 Patna City, Patna, Bihar IN</p>
+    <p class="mt-2 text-sm">&copy; 2025 Narayan Kumar | All rights reserved.</p>
   </footer>
+
+  <!-- JavaScript Section -->
+  <script>
+    // 🌦️ Weather App -----------------
+    const API_KEY = "your_api_key_here"; // 🔑 Replace with your OpenWeatherMap API key
+
+    // Get weather by city name
+    function getWeather() {
+      const city = document.getElementById('city').value.trim();
+      if (!city) {
+        document.getElementById('weatherResult').innerText = "⚠️ Please enter a city.";
+        return;
+      }
+
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.cod === 200) {
+            document.getElementById('weatherResult').innerText =
+              `🌍 ${data.name}: ${data.main.temp}°C, ${data.weather[0].description}`;
+          } else {
+            document.getElementById('weatherResult').innerText = "❌ City not found!";
+          }
+        })
+        .catch(() => {
+          document.getElementById('weatherResult').innerText = "⚠️ Error fetching weather.";
+        });
+    }
+
+    // Get weather by live location
+    function getWeatherByLocation() {
+      if (!navigator.geolocation) {
+        document.getElementById('weatherResult').innerText = "⚠️ Geolocation not supported.";
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          const { latitude, longitude } = position.coords;
+          fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`)
+            .then(res => res.json())
+            .then(data => {
+              document.getElementById('weatherResult').innerText =
+                `📍 ${data.name}: ${data.main.temp}°C, ${data.weather[0].description}`;
+            })
+            .catch(() => {
+              document.getElementById('weatherResult').innerText = "⚠️ Error fetching weather.";
+            });
+        },
+        () => {
+          document.getElementById('weatherResult').innerText = "⚠️ Unable to get location.";
+        }
+      );
+    }
+
+    // ✅ To-Do List -----------------
+    function addTask() {
+      const input = document.getElementById('taskInput');
+      const taskText = input.value.trim();
+
+      if (!taskText) return;
+
+      const li = document.createElement('li');
+      li.textContent = taskText;
+
+      // Remove task on click
+      li.onclick = () => li.remove();
+
+      document.getElementById('taskList').appendChild(li);
+      input.value = "";
+    }
+
+    // 🛒 E-Commerce Demo -----------------
+    const sampleProducts = ["Laptop 💻", "Phone 📱", "Headphones 🎧"];
+    const productsDiv = document.getElementById('products');
+    const cart = document.getElementById('cart');
+
+    sampleProducts.forEach(product => {
+      const btn = document.createElement('button');
+      btn.textContent = `Add ${product}`;
+      btn.className = "bg-indigo-600 text-white px-2 py-1 rounded block w-full mb-1 hover:bg-indigo-700";
+      
+      btn.onclick = () => {
+        const li = document.createElement('li');
+        li.textContent = product;
+        cart.appendChild(li);
+      };
+
+      productsDiv.appendChild(btn);
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
